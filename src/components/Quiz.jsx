@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const QUIZ_SIZE = 4;
-const PASS_MARK = 3; // capped to the number of questions
+const PASS_MARK = 4; // need every question right (capped to the number of questions)
 
 // keep the written order while the pool is small; shuffle once it outgrows the quiz
 const pick = (pool) =>

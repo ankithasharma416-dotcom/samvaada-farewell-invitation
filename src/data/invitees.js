@@ -10,6 +10,7 @@ export const invitees = [
   "Meghraj",
   "Prathvik",
   "Vaibhav",
+  "Mohith",
 ].map((name, i) => ({
   id: i + 1,
   name,
