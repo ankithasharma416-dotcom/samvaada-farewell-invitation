@@ -38,6 +38,8 @@ export default function Invitation({ person, onClose }) {
         aria-label={`Invitation for ${person.name}`}
         onClick={(e) => e.stopPropagation()}
       >
+        <i className="sprockets l" aria-hidden="true" />
+        <i className="sprockets r" aria-hidden="true" />
         <button className="close" onClick={onClose} aria-label="Close">
           ×
         </button>
@@ -46,11 +48,13 @@ export default function Invitation({ person, onClose }) {
           name={person.name}
           className="photo-lg"
         />
+        <p className="frame-no">Frame {String(person.id).padStart(2, "0")}</p>
         <motion.div variants={container} initial="hidden" animate="show">
           <motion.p variants={item} className="eyebrow">
             You are invited to
           </motion.p>
           <motion.h2 variants={item}>{event.title}</motion.h2>
+          <motion.p variants={item} className="tagline">{event.tagline}</motion.p>
           <motion.div variants={item} className="message">
             {person.message.map((line, i) => (
               <p key={i}>{line}</p>

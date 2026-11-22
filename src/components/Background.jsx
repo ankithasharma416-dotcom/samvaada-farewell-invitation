@@ -14,6 +14,7 @@ export default function Background() {
         glow={1.6}
         thickness={1}
         haze={0.75}
+        dpr={typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches ? 1 : 1.5}
         mouseInteraction
         flareOnClick
       />

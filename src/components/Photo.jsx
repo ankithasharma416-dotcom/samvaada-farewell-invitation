@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 // Image with initials fallback. Pass layoutId for shared-element morphing.
-export default function Photo({ src, name, layoutId, className = "" }) {
+export default function Photo({ src, name, layoutId, className = "", forceFallback = false }) {
   const [failed, setFailed] = useState(false);
   const initials = name
     .split(" ")
@@ -11,7 +11,7 @@ export default function Photo({ src, name, layoutId, className = "" }) {
     .slice(0, 2);
   return (
     <motion.div layoutId={layoutId} className={`photo ${className}`}>
-      {failed ? (
+      {failed || forceFallback ? (
         <span className="photo-fallback" aria-label={name}>
           {initials}
         </span>

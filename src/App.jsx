@@ -8,6 +8,7 @@ import Intro from "./components/Intro.jsx";
 import Quiz from "./components/Quiz.jsx";
 import Carousel from "./components/Carousel.jsx";
 import Invitation from "./components/Invitation.jsx";
+import FinalInvite from "./components/FinalInvite.jsx";
 import Logo from "./components/Logo.jsx";
 import Background from "./components/Background.jsx";
 import { invitees } from "./data/invitees.js";
@@ -70,9 +71,19 @@ export default function App() {
           >
             <button className="back-btn" onClick={back}>← Back</button>
             <Logo small />
+            <p className="eyebrow home-eyebrow">Samvaada · The Media Club</p>
             <h1 className="home-title">You're invited</h1>
-            <p className="home-sub">Tap your card to open your invitation</p>
-            <Carousel items={invitees} onSelect={setSelected} />
+            <p className="home-sub">Our 4th-year crew is signing off. Tap your frame to open your invitation.</p>
+            <div className="viewfinder">
+              <i className="vf tl" /><i className="vf tr" /><i className="vf bl" /><i className="vf br" />
+              <span className="rec"><i />REC</span>
+              <Carousel items={invitees} onSelect={setSelected} />
+            </div>
+            <a className="scroll-cue" href="#pass" onClick={(e) => { e.preventDefault(); document.getElementById("pass")?.scrollIntoView({ behavior: "smooth" }); }}>
+              <span>Your personal pass</span>
+              <i aria-hidden="true" />
+            </a>
+            <FinalInvite />
           </motion.main>
         )}
       </AnimatePresence>
