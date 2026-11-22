@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const QUIZ_SIZE = 4;
-const PASS_MARK = 3;
+const PASS_MARK = 3; // capped to the number of questions
 
 const pick = (pool) =>
   [...pool].sort(() => Math.random() - 0.5).slice(0, QUIZ_SIZE);
@@ -18,7 +18,8 @@ export default function Quiz({ questions, onPass }) {
 
   const set = useMemo(() => pick(questions), [questions, round]);
   const q = set[idx];
-  const passed = score >= PASS_MARK;
+  const passMark = Math.min(PASS_MARK, set.length);
+  const passed = score >= passMark;
 
   const answer = (i) => {
     if (chosen !== null) return;
@@ -32,7 +33,7 @@ export default function Quiz({ questions, onPass }) {
       setChosen(null);
     } else {
       setDone(true);
-      if (score < PASS_MARK) setFails((f) => f + 1);
+      if (score < passMark) setFails((f) => f + 1);
     }
   };
 
@@ -157,7 +158,7 @@ export default function Quiz({ questions, onPass }) {
                 </>
               ) : (
                 <>
-                  <p>So close! You need {PASS_MARK} right. Try again?</p>
+                  <p>So close! You need {passMark} right. Try again?</p>
                   {fails >= 2 && (
                     <p className="hint">
                       Hint: the answers are all on this invitation — date,

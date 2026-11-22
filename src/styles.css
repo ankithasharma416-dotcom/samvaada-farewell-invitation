@@ -9,7 +9,8 @@
   --green: #4ade80;
   --red: #f87171;
   --radius: 20px;
-  --serif: "Cormorant Garamond", Georgia, serif;
+  --serif: "Nunito", "Inter", system-ui, sans-serif; /* stand-in for GT Maru */
+  --welcome: "Archivo", "Inter", system-ui, sans-serif; /* stand-in for GT America (expanded) */
   --sans: "Inter", system-ui, sans-serif;
 }
 
@@ -22,7 +23,7 @@ body {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
-h1, h2 { font-family: var(--serif); margin: 0; }
+h1, h2 { font-family: var(--serif); font-weight: 700; letter-spacing: -0.01em; margin: 0; }
 button { font: inherit; color: inherit; cursor: pointer; }
 
 .screen, .home {
@@ -69,7 +70,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* intro */
 .intro { background: var(--bg); }
-.intro-text { font-family: var(--serif); font-weight: 600; font-size: clamp(2.2rem, 9vw, 4.5rem); color: var(--text); margin: 0 0 24px; }
+.intro-text { font-family: var(--welcome); font-weight: 650; font-stretch: 118%; font-variation-settings: "wdth" 118; font-size: clamp(1.8rem, 7vw, 3.6rem); letter-spacing: -0.02em; color: var(--text); margin: 0 0 24px; }
 .intro-hi-old { font-family: var(--serif); font-size: clamp(5rem, 22vw, 9rem); color: var(--accent); display: flex; gap: 8px; align-items: center; margin-bottom: 16px; }
 .intro-hi span { display: inline-block; }
 .wave { transform-origin: 70% 70%; font-size: 0.6em; }
@@ -114,7 +115,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; text-align: left; }
 .details dt { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); }
 .details dd { margin: 2px 0 0; font-weight: 500; }
-.signoff { font-family: var(--serif); font-style: italic; font-size: 1.2rem; margin: 8px 0 0; }
+.signoff { font-family: var(--serif); font-size: 1rem; margin: 8px 0 0; }
 .close { position: absolute; top: 8px; right: 12px; border: 0; background: none; font-size: 1.8rem; line-height: 1; z-index: 1; }
 
 /* ---- quiz: bare placeholder until reference arrives ---- */
@@ -147,3 +148,43 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .signoff { color: var(--muted); }
 .close { color: var(--muted); }
 .close:hover { color: var(--text); }
+
+/* ---- background + logo reveal ---- */
+.bg-canvas { animation: bg-in 1.6s ease both; position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+#root { position: relative; z-index: 1; }
+.screen, .home { position: relative; z-index: 1; }
+.logo { width: 150px; }
+.logo-small { width: 120px; margin-bottom: 12px; }
+.intro-logo-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px; width: min(72vw, 350px); overflow: hidden; padding: 4px 0; }
+.intro-rule { display: block; width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #71717a, transparent); transform-origin: center; }
+.intro-logo { width: 100%; height: auto; display: block; }
+.intro-sheen { position: absolute; top: 0; bottom: 0; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent); mix-blend-mode: overlay; pointer-events: none; }
+.quiz, .intro { background: transparent; }
+
+@keyframes bg-in { from { opacity: 0; } to { opacity: 1; } }
+.video-intro { padding: 0; background: #000; }
+.intro-video { width: 100%; height: 100dvh; object-fit: contain; background: #000; }
+.video-controls { position: absolute; left: 16px; bottom: 16px; display: flex; gap: 8px; }
+.video-controls button { background: rgba(0,0,0,.55); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .8rem; backdrop-filter: blur(6px); }
+
+/* gate + sound toggle */
+.gate { background: #000; border: 0; color: var(--text); cursor: pointer; width: 100%; gap: 14px; }
+.gate-ring { width: 64px; height: 64px; border-radius: 50%; border: 1px solid #52525b; position: relative; animation: ring 2.4s ease-in-out infinite; }
+.gate-ring::after { content: ""; position: absolute; inset: 22px; border-radius: 50%; background: var(--text); }
+.gate-label { font-family: var(--serif); font-size: 1.4rem; letter-spacing: .02em; }
+.gate-hint { color: var(--muted); font-size: .8rem; }
+@keyframes ring { 0%,100% { transform: scale(1); opacity: .7; } 50% { transform: scale(1.12); opacity: 1; } }
+.sound-toggle { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: flex; align-items: center; gap: 10px; background: rgba(10,10,11,.7); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; font-size: .78rem; backdrop-filter: blur(8px); }
+.sound-toggle .bars { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.sound-toggle .bars i { width: 2px; background: var(--text); border-radius: 1px; animation: eq 1s ease-in-out infinite; }
+.sound-toggle .bars i:nth-child(1) { height: 40%; animation-delay: -.4s; }
+.sound-toggle .bars i:nth-child(2) { height: 100%; animation-delay: -.1s; }
+.sound-toggle .bars i:nth-child(3) { height: 60%; animation-delay: -.7s; }
+.sound-toggle .bars i:nth-child(4) { height: 80%; animation-delay: -.3s; }
+.sound-toggle .bars.off i { animation: none; height: 2px; opacity: .5; }
+@keyframes eq { 0%,100% { transform: scaleY(.35); } 50% { transform: scaleY(1); } }
+@media (prefers-reduced-motion: reduce) { .gate-ring, .sound-toggle .bars i { animation: none; } }
+
+.logo-small { width: 108px; }
+.back-btn { position: absolute; top: 16px; left: 16px; z-index: 5; background: rgba(10,10,11,.7); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .8rem; backdrop-filter: blur(8px); }
+.back-btn:hover { border-color: #52525b; }

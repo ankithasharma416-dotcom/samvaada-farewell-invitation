@@ -42,7 +42,7 @@ export default function Invitation({ person, onClose }) {
           ×
         </button>
         <Photo
-          src={person.photo}
+          src={person.invitePhoto || person.photo}
           name={person.name}
           className="photo-lg"
         />
@@ -50,7 +50,7 @@ export default function Invitation({ person, onClose }) {
           <motion.p variants={item} className="eyebrow">
             You are invited to
           </motion.p>
-          <motion.h2 variants={item}>{person.name}</motion.h2>
+          <motion.h2 variants={item}>{event.title}</motion.h2>
           <motion.div variants={item} className="message">
             {person.message.map((line, i) => (
               <p key={i}>{line}</p>

@@ -1,19 +1,22 @@
-// TODO: replace names/messages. Put photos in public/photos/1.jpg … 7.jpg
+// Order = carousel order. Card photos: public/photos/N.jpg, invitation photos: public/photos/invite-N.jpg
+// TODO: replace the generic message text per person.
 export const invitees = [
-  "Invitee One",
-  "Invitee Two",
-  "Invitee Three",
-  "Invitee Four",
-  "Invitee Five",
-  "Invitee Six",
-  "Invitee Seven",
+  "Thushara",
+  "Pratik",
+  "Yash",
+  "Mithun",
+  "Sumanth",
+  "Meghraj",
+  "Prathvik",
+  "Vaibhav",
 ].map((name, i) => ({
   id: i + 1,
   name,
-  photo: `photos/${i + 1}.jpg`,
+  photo: `photos/${i + 1}.jpg`, // carousel card
+  invitePhoto: `photos/invite-${i + 1}.jpg`, // shown on the opened invitation (childhood pic)
   message: [
     `Dear ${name.split(" ")[0]},`,
-    "Samvada wouldn't be the same without you. Join us as we celebrate everything you've given this family.",
+    "Samvaada wouldn't be the same without you. Join us as we celebrate everything you've given this family.",
   ],
-  signoff: "With love, Team Samvada",
+  signoff: "With love, Team Samvaada",
 }));
