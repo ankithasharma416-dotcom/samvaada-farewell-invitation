@@ -14,4 +14,18 @@ export const questions = [
     answerIndex: 3,
     reaction: { right: "Only one Yash bhai.", wrong: "Wrong Yash." },
   },
+  {
+    id: 3,
+    question: "Among these, who is the bacteria?",
+    options: ["Escherichia coli", "Staphylococcus aureus", "Lactobacillus acidophilus", "Pratik"],
+    answerIndex: 3,
+    reaction: { right: "Spotted the culture. 🦠", wrong: "That one's a real bacteria." },
+  },
+  {
+    id: 4,
+    question: "Samvaada is most spotted in…",
+    options: ["Ribbons and balloons", "Kitchen bells", "Canteen", "Classes"],
+    answerIndex: 2,
+    reaction: { right: "Always at the canteen. 🍴", wrong: "Not there. Try again." },
+  },
 ];

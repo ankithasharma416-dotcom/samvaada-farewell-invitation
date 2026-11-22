@@ -4,8 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 const QUIZ_SIZE = 4;
 const PASS_MARK = 3; // capped to the number of questions
 
+// keep the written order while the pool is small; shuffle once it outgrows the quiz
 const pick = (pool) =>
-  [...pool].sort(() => Math.random() - 0.5).slice(0, QUIZ_SIZE);
+  pool.length <= QUIZ_SIZE
+    ? [...pool]
+    : [...pool].sort(() => Math.random() - 0.5).slice(0, QUIZ_SIZE);
 
 export default function Quiz({ questions, onPass }) {
   const [round, setRound] = useState(0);

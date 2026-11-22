@@ -188,3 +188,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .logo-small { width: 108px; }
 .back-btn { position: absolute; top: 16px; left: 16px; z-index: 5; background: rgba(10,10,11,.7); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .8rem; backdrop-filter: blur(8px); }
 .back-btn:hover { border-color: #52525b; }
+
+/* logo nudged up */
+.intro { padding-bottom: 10vh; }
+.home { padding-top: 24px; }
